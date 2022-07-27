@@ -1,13 +1,85 @@
-body {
+@font-face {
+  font-family: 'Barlow';
+  font-weight: normal;
+  src: url('./assets/fonts/Barlow-Regular.woff2') format('woff2'),
+    url('./assets/fonts/Barlow-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-weight: medium;
+  src: url('./assets/fonts/Barlow-Medium.woff2') format('woff2'),
+    url('./assets/fonts/Barlow-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-weight: 600;
+  src: url('./assets/fonts/Barlow-SemiBold.woff2') format('woff2'),
+    url('./assets/fonts/Barlow-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-weight: bold;
+  src: url('./assets/fonts/Barlow-Bold.woff2') format('woff2'),
+    url('./assets/fonts/Barlow-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-weight: 800;
+  src: url('./assets/fonts/Barlow-ExtraBold.woff2') format('woff2'),
+    url('./assets/fonts/Barlow-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-weight: 900;
+  src: url('./assets/fonts/Barlow-Black.woff2') format('woff2'),
+    url('./assets/fonts/Barlow-Black.ttf') format('truetype');
+}
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  padding: 0;
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'Barlow', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Header */
+@import url('./assets/css/header.css');
+
+/* Products */
+@import url('./assets/css/products.css');
+
+/* Product Card */
+@import url('./assets/css/product_card.css');
+
+/* Product Info */
+@import url('./assets/css/product_info.css');
+
+/* Pagination */
+@import url('./assets/css/pagination.css');
+
+/* Modal */
+@import url('./assets/css/modal.css');
+
+/* Search Form */
+@import url('./assets/css/search_form.css');
+
+/* Product Form */
+@import url('./assets/css/product_form.css');
+
+/* Filter Form */
+@import url('./assets/css/filter_form.css');
+
+/* Sorting */
+@import url('./assets/css/sorting.css');
+
+/* Loading */
+@import url('./assets/css/loading.css');
