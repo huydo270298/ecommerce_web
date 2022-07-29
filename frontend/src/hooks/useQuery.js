@@ -8,17 +8,23 @@ const useQuery = (url) => {
   const [error, setError] = useState();
 
   useEffect(() => {
+    let here = true;
+
+    setLoading(true);
+
     axios
       .get(url)
       .then((res) => {
-        setData(res.data);
+        if (here) setData(res.data);
       })
       .catch((err) => {
-        setError(err.response.data.msg);
-        toast.error(err.response.data.msg);
+        if (here) {
+          setError(err.response.data.msg);
+          toast.error(err.response.data.msg);
+        }
       })
       .finally(() => {
-        setLoading(true);
+        if (here) setLoading(false);
       });
 
     return () => {};
