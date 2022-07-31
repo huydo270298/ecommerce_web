@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import usePagination from "../../hooks/usePagination";
 
-const Pagination = ({ totalPages, page }) => {
+const Pagination = React.memo(({ totalPages, page }) => {
   const ref = useRef(0);
   const { firstArr, lastArr, isActive, nextPage, prevPage, jumbPage } =
     usePagination(totalPages, page);
@@ -32,6 +32,6 @@ const Pagination = ({ totalPages, page }) => {
       {page < totalPages && <button onClick={nextPage}>&raquo;</button>}
     </div>
   );
-};
+});
 
 export default Pagination;

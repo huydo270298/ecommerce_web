@@ -8,10 +8,15 @@ import useQuery from "../../hooks/useQuery";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [limit, setLimit] = useState(2);
-  const [page, setPage] = useState(1);
 
   const { search } = useLocation();
   const ref = useRef(0);
+
+  
+  const page = useMemo(() => {
+    const page = new URLSearchParams(search).get("page") || 1;
+    return Number(page);
+  }, [search]);
 
   const { data, loading, error } = useQuery(
     `/products?limit=${limit}&page=${page}`
@@ -28,10 +33,6 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.count]);
 
-  useEffect(() => {
-    const page = new URLSearchParams(search).get("page") || 1;
-    setPage(Number(page));
-  }, [search]);
   return (
     <main>
       <h2>Render: {ref.current++}</h2>

@@ -1,31 +1,40 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const usePagination = (totalPages, page) => {
-  const [firstArr, setFirstArr] = useState([]);
-  const [lastArr, setLastArr] = useState([]);
 
-  useEffect(() => {
+  const navigate = useNavigate();
+
+  const {firstArr, lastArr} = useMemo(() => {
     const newArr = [...Array(totalPages)].map((_, i) => i + 1);
     if (totalPages < 4) {
-      setFirstArr(newArr);
-      setLastArr([]);
-      return;
+      return {
+        firstArr: newArr,
+        lastArr: []
+      }
     }
     if (totalPages - page >= 3) {
       if (page > 1) {
-        setFirstArr(newArr.slice(page - 2, page + 1));
+        return {
+          firstArr: newArr.slice(page - 2, page + 1),
+          lastArr: newArr.slice(totalPages - 1)
+        }
+        
       } else {
-        setFirstArr(newArr.slice(page - 1, page + 2));
+        return {
+          firstArr: newArr.slice(page - 1, page + 2),
+          lastArr: newArr.slice(totalPages - 1)
+        }
       }
-      setLastArr(newArr.slice(totalPages - 1));
     } else {
-      setFirstArr(newArr.slice(0, 1));
-      setLastArr(newArr.slice(totalPages - 3, totalPages));
+      return {
+        firstArr: newArr.slice(0, 1),
+        lastArr: newArr.slice(totalPages - 3, totalPages)
+      }
     }
   }, [totalPages, page]);
 
-  const navigate = useNavigate();
+  
 
   const isActive = (index) => {
     if (index === page) return "active";

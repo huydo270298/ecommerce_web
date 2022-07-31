@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Products = React.memo(({ data }) => {
+const Products = ({ data }) => {
   return (
     <div className="card">
       <img src={data.image} alt={data.image} />
@@ -22,6 +22,6 @@ const Products = React.memo(({ data }) => {
       </div>
     </div>
   );
-});
+};
 
 export default Products;
