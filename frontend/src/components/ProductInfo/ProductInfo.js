@@ -1,7 +1,6 @@
 import React from "react";
 
 const ProductInfo = ({ data }) => {
-  console.log(data);
   return (
     <div className="product_info">
       <img src={data.image} alt={data.image} />

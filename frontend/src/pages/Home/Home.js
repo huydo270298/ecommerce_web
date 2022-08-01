@@ -1,25 +1,21 @@
 import { useEffect, useMemo, useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
 
 import Pagination from "../../components/Pagination";
 import Products from "../../components/Products";
+import Sorting from "../../components/Sorting";
+import { useMyContext } from "../../context/store";
 import useQuery from "../../hooks/useQuery";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [limit, setLimit] = useState(2);
 
-  const { search } = useLocation();
   const ref = useRef(0);
 
-  
-  const page = useMemo(() => {
-    const page = new URLSearchParams(search).get("page") || 1;
-    return Number(page);
-  }, [search]);
+  const { page, sort } = useMyContext();
 
   const { data, loading, error } = useQuery(
-    `/products?limit=${limit}&page=${page}`
+    `/products?limit=${limit}&page=${page}&sort=${sort}`
   );
 
   useEffect(() => {
@@ -36,15 +32,9 @@ const Home = () => {
   return (
     <main>
       <h2>Render: {ref.current++}</h2>
-      <div className="products">
-        {products &&
-          products.map((product) => (
-            <Products key={product._id} data={product} />
-          ))}
-        {error && <h2>{error}</h2>}
-        {loading && <h2>Loading...</h2>}
-      </div>
-      <Pagination totalPages={totalPages} page={page} />
+      <Sorting />
+      <Products data={products} loading={loading} error={error} />
+      <Pagination totalPages={totalPages} />
     </main>
   );
 };

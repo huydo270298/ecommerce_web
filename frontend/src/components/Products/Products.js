@@ -1,26 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import ProductsCard from "../ProductsCard";
 
-const Products = ({ data }) => {
+const Products = ({ data, loading, error }) => {
   return (
-    <div className="card">
-      <img src={data.image} alt={data.image} />
-
-      <div className="box">
-        <h3>
-          <Link to={`/products/${data._id}`}>
-            <span />
-            {data.title}
-          </Link>
-        </h3>
-        <h4>${data.price}</h4>
-
-        <div className="btn_div">
-          <button className="btn_edit">Edit</button>
-          <button className="btn_delete">Delete</button>
-        </div>
+    <section>
+      <div className="products">
+        {data.map((product) => (
+          <ProductsCard key={product._id} data={product} />
+        ))}
+        {error && <h2>{error}</h2>}
+        {loading && <h2 style={{ textAlign: "center" }}>Loading...</h2>}
       </div>
-    </div>
+    </section>
   );
 };
 

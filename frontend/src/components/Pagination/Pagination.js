@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
+import { useMyContext } from "../../context/store";
 import usePagination from "../../hooks/usePagination";
 
-const Pagination = React.memo(({ totalPages, page }) => {
+const Pagination = React.memo(({ totalPages }) => {
+  const { page, sort } = useMyContext();
   const ref = useRef(0);
   const { firstArr, lastArr, isActive, nextPage, prevPage, jumbPage } =
-    usePagination(totalPages, page);
+    usePagination(totalPages);
 
   return (
     <div className="pagination">
